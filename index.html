@@ -13,7 +13,9 @@
       pre {
         /*requires trace font*/
         font-family: trace;
-        font-size: 36pt;
+        font-size: 48pt;
+        margin-left:  26pt;
+        line-height: 70pt;
       }
       form{
         margin-inline: 2rem;
@@ -31,12 +33,12 @@
   </head>
   <body>
     <form onsubmit="generateWord(); return false;">
-      <input id="words" placeholder="What's the words?" />
+      <input id="words" placeholder="What's the words?" value="one two three" />
       <button type="submit">Submit</button>
     </form>
   </body>
   <script>
-    function generateWordMatrix(words, width = 27, height = 20, spaceBetweenWords = '   ') {
+    function generateWordMatrix(words, width = 21, height = 15, spaceBetweenWords = '    ') {
       if (words.length === 0) {
         throw "Some words are needed";
       }
