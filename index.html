@@ -18,6 +18,7 @@
         line-height: 70pt;
       }
       form{
+        margin-block: 2rem;
         margin-inline: 2rem;
       }
       input {
@@ -33,6 +34,7 @@
   </head>
   <body>
     <form onsubmit="generateWord(); return false;">
+      <h1>Letter Tracing Generator</h1>
       <input id="words" placeholder="What's the words?" required />
       <button type="submit">Submit</button>
     </form>
