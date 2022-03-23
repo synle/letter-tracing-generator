@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Trace Letter</title>
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      pre {
+        /*requires trace font*/
+        font-family: trace;
+        font-size: 36pt;
+      }
+      form{
+        margin-inline: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+      }
+      input {
+        padding: 1rem 2rem;
+        width: 80%;
+        margin-block: 2rem;
+      }
+      button{
+        padding: 1rem 2rem;
+        width: 80%;
+      }
+    </style>
+  </head>
+  <body>
+    <form onsubmit="generateWord(); return false;">
+      <input id="words" placeholder="What's the words?" />
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+  <script>
+    function generateWordMatrix(words, width = 35, height = 16) {
+      if (words.length === 0) {
+        throw "Some words are needed";
+      }
+
+      let res = [];
+
+      let rowsEachWord = Math.floor(height / words.length);
+
+      for (const word of words) {
+        const rowBuffer = [];
+        let wordsEachColumn = Math.floor(height / word.length + 2);
+        for (let j = 0; j < wordsEachColumn; j++) {
+          rowBuffer.push(word + " ");
+        }
+
+        for (let i = 0; i < rowsEachWord; i++) {
+          res.push(rowBuffer.join(" "));
+        }
+      }
+
+      const lastRow = res[res.length - 1];
+      while (res.length < height) {
+        // keep appending till we hit the end
+        res.push(lastRow);
+      }
+
+      return res.join("\n");
+    }
+
+    function generateWord() {
+      const words = [
+        ...new Set(
+          document
+            .querySelector("#words")
+            .value.split(" ")
+            .map((w) => w.trim().toLowerCase())
+        ),
+      ];
+      document.body.innerHTML = `<pre>${generateWordMatrix(words)}</pre>`;
+    }
+  </script>
+</html>
