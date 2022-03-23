@@ -1,5 +1,5 @@
 # letter-tracing-generator
-Generate a list of tracing for kids to learn how to write
+A web app that generates list of words for kids to trace which is printer friendly. It helps my kids learn to trace and learn the words.
 
 ## Demo
 [Live Demo - Letter Tracing Generator](https://synle.github.io/letter-tracing-generator/)
