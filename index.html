@@ -97,6 +97,19 @@
         rowToCopyFrom++;
       }
 
+      const group = {};
+      for(const row of res){
+        group[row] =group[row] || [];
+        group[row].push(row);
+      }
+
+      res = []
+      for(const rows of Object.values(group)){
+        for(const row of rows){
+          res.push(row);
+        }
+      }
+
       return res.join("\n");
     }
 
