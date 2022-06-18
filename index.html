@@ -14,7 +14,7 @@
         /*requires trace font*/
         font-family: trace;
         font-size: 60pt;
-        margin-left:  10pt;
+        margin-inline:  8pt;
         line-height: 70pt;
       }
       form{
@@ -46,7 +46,7 @@
     </form>
   </body>
   <script>
-    function generateWordMatrix(words, width = 14, height = 14, spaceBetweenWords = '    ') {
+    function generateWordMatrix(words, width = 16, height = 14, spaceBetweenWords = '  ') {
       if (words.length === 0) {
         throw "Some words are needed";
       }
