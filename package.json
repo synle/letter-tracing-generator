@@ -1,0 +1,21 @@
+{
+  "name": "letter-tracing-generator",
+  "version": "1.0.0",
+  "description": "A web app that generates list of words for kids to trace which is printer friendly. It helps my kids learn to trace and learn the words.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx http-server .",
+    "dev": "npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/synle/letter-tracing-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/synle/letter-tracing-generator/issues"
+  },
+  "homepage": "https://github.com/synle/letter-tracing-generator#readme"
+}
