@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>Trace Letter</title>
     <style type="text/css">
-      *,html {
+      *,html,body {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -13,10 +13,10 @@
       pre {
         /*requires trace font*/
         font-family: trace;
-        font-size: 90pt;
+        font-size: 60pt;
         margin:  0;
         padding:  0;
-        line-height: 100pt;
+        line-height: 1em;
       }
       form{
         margin-block: 2rem;
@@ -36,6 +36,19 @@
         text-align: center;
         margin-top:  1.5rem;
       }
+      @media print {
+        * { margin: 0 !important; padding: 0 !important; }
+        #controls, .footer, .footerarea{ display: none; }
+        html, body {
+          /*changing width to 100% causes huge overflow and wrap*/
+          height:100%;
+          overflow: hidden;
+        }
+
+        .template { width: auto; left:0; top:0; }
+        img { width:100%; }
+        li { margin: 0 !important;}
+      }
     </style>
   </head>
   <body>
@@ -47,7 +60,7 @@
     </form>
   </body>
   <script>
-    function generateWordMatrix(words, width = 11, height = 10, spaceBetweenWords = '  ') {
+    function generateWordMatrix(words, width = 11, height = 11, spaceBetweenWords = '  ') {
       if (words.length === 0) {
         throw "Some words are needed";
       }
@@ -76,10 +89,12 @@
         }
       }
 
-      const lastRow = res[res.length - 1];
+      // let's repeat each flow of letters till we hit the last row
+      let rowToCopyFrom = 0;
       while (res.length < height) {
         // keep appending till we hit the end
-        res.push(lastRow);
+        res.push(res[rowToCopyFrom]);
+        rowToCopyFrom++;
       }
 
       return res.join("\n");
