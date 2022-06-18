@@ -56,9 +56,8 @@
         body {
           /*changing width to 100% causes huge overflow and wrap*/
           height: 100%;
-          overflow: hidden;
+          /*overflow: hidden;*/
         }
-
         .template {
           width: auto;
           left: 0;
@@ -103,7 +102,7 @@
 
       let res = [];
 
-      let rowsEachWord = Math.floor(height / words.length);
+      let rowsEachWord = Math.max(Math.floor(height / words.length), 1);
 
       for (const word of words) {
         const rowBuffer = [];
