@@ -5,20 +5,22 @@
     <meta name="viewport" content="width=device-width" />
     <title>Trace Letter</title>
     <style type="text/css">
-      *,html,body {
+      *,
+      html,
+      body {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-      pre {
+      #trace {
         /*requires trace font*/
         font-family: trace;
         font-size: 60pt;
-        margin:  0;
-        padding:  0;
-        line-height: 1em;
+        margin: 0;
+        padding: 0;
+        line-height: 1.1em;
       }
-      form{
+      form {
         margin-block: 2rem;
         margin-inline: 2rem;
       }
@@ -27,27 +29,43 @@
         width: 100%;
         margin-block: 2rem;
       }
-      button{
+      button {
         padding: 1rem 2rem;
         width: 100%;
       }
-      a{
+      a {
         display: block;
         text-align: center;
-        margin-top:  1.5rem;
+        margin-top: 1.5rem;
       }
       @media print {
-        * { margin: 0 !important; padding: 0 !important; }
-        #controls, .footer, .footerarea{ display: none; }
-        html, body {
+        * {
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+        #controls,
+        .footer,
+        .footerarea {
+          display: none;
+        }
+        html,
+        body {
           /*changing width to 100% causes huge overflow and wrap*/
-          height:100%;
+          height: 100%;
           overflow: hidden;
         }
 
-        .template { width: auto; left:0; top:0; }
-        img { width:100%; }
-        li { margin: 0 !important;}
+        .template {
+          width: auto;
+          left: 0;
+          top: 0;
+        }
+        img {
+          width: 100%;
+        }
+        li {
+          margin: 0 !important;
+        }
       }
     </style>
   </head>
@@ -56,22 +74,28 @@
       <h1>Letter Tracing Generator</h1>
       <input id="words" placeholder="What's the words?" required />
       <button type="submit">Submit</button>
-      <a href="https://github.com/synle/letter-tracing-generator/blob/main/index.html">Source Code</a>
+      <a
+        href="https://github.com/synle/letter-tracing-generator/blob/main/index.html"
+        >Source Code</a
+      >
     </form>
   </body>
   <script>
-    function generateWordMatrix(words, width = 11, height = 11, spaceBetweenWords = '  ') {
+    function generateWordMatrix(
+      words,
+      width = 11,
+      height = 11,
+      spaceBetweenWords = "  "
+    ) {
       if (words.length === 0) {
         throw "Some words are needed";
       }
 
-      words = words.map(
-        w => {
-          const [first, ...rest] = w;
+      words = words.map((w) => {
+        const [first, ...rest] = w;
 
-          return [first.toUpperCase(), ...rest].join('')
-        }
-      )
+        return [first.toUpperCase(), ...rest].join("");
+      });
 
       let res = [];
 
@@ -79,13 +103,13 @@
 
       for (const word of words) {
         const rowBuffer = [];
-        let wordsEachColumn = Math.ceil(width / (word.length));
+        let wordsEachColumn = Math.ceil(width / word.length);
         for (let j = 0; j < wordsEachColumn; j++) {
           rowBuffer.push(word + spaceBetweenWords);
         }
 
         for (let i = 0; i < rowsEachWord; i++) {
-          res.push(rowBuffer.join(''));
+          res.push(rowBuffer.join(""));
         }
       }
 
@@ -98,19 +122,19 @@
       }
 
       const group = {};
-      for(const row of res){
-        group[row] =group[row] || [];
+      for (const row of res) {
+        group[row] = group[row] || [];
         group[row].push(row);
       }
 
-      res = []
-      for(const rows of Object.values(group)){
-        for(const row of rows){
+      res = [];
+      for (const rows of Object.values(group)) {
+        for (const row of rows) {
           res.push(row);
         }
       }
 
-      return res.join("\n");
+      return res.join("<br />");
     }
 
     function generateWord() {
@@ -122,7 +146,7 @@
             .map((w) => w.trim().toLowerCase())
         ),
       ];
-      document.body.innerHTML = `<pre>${generateWordMatrix(words)}</pre>`;
+      document.body.innerHTML = `<div id='trace'>${generateWordMatrix(words)}</div>`;
     }
   </script>
 </html>
