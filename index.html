@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>Trace Letter</title>
     <style type="text/css">
-      * {
+      *,html {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -13,12 +13,10 @@
       pre {
         /*requires trace font*/
         font-family: trace;
-        font-size: 60pt;
-        margin-inline:  0;
-        margin-block:  0;
-        padding-inline:  0;
-        padding-block:  0;
-        line-height: 70pt;
+        font-size: 90pt;
+        margin:  0;
+        padding:  0;
+        line-height: 100pt;
       }
       form{
         margin-block: 2rem;
@@ -49,7 +47,7 @@
     </form>
   </body>
   <script>
-    function generateWordMatrix(words, width = 16, height = 14, spaceBetweenWords = '  ') {
+    function generateWordMatrix(words, width = 11, height = 10, spaceBetweenWords = '  ') {
       if (words.length === 0) {
         throw "Some words are needed";
       }
