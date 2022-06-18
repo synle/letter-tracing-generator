@@ -14,7 +14,10 @@
         /*requires trace font*/
         font-family: trace;
         font-size: 60pt;
-        margin-inline:  8pt;
+        margin-inline:  0;
+        margin-block:  0;
+        padding-inline:  0;
+        padding-block:  0;
         line-height: 70pt;
       }
       form{
@@ -50,6 +53,14 @@
       if (words.length === 0) {
         throw "Some words are needed";
       }
+
+      words = words.map(
+        w => {
+          const [first, ...rest] = w;
+
+          return [first.toUpperCase(), ...rest].join('')
+        }
+      )
 
       let res = [];
 
