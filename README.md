@@ -4,7 +4,8 @@ A web app that generates list of words for kids to trace which is printer friend
 
 ## Demo
 
-[Live Demo - Letter Tracing Generator](https://synle.github.io/letter-tracing-generator/)
+- [Live Demo - Letter Tracing Generator](https://synle.github.io/letter-tracing-generator/)
+- [First 100 words](https://synle.github.io/letter-tracing-generator/first-grade-100-words.html)
 
 ## Screenshot
 
