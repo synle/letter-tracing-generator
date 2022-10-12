@@ -90,6 +90,10 @@
       height = 11,
       spaceBetweenWords = "  "
     ) {
+      const url = new URL(window.location);
+      url.searchParams.set('q', words.join(' '));
+      window.history.pushState({}, '', url);
+
       if (words.length === 0) {
         throw "Some words are needed";
       }
@@ -140,16 +144,21 @@
       return res.join("<br />");
     }
 
+    const wordsDom = document
+            .querySelector("#words")
     function generateWord() {
       const words = [
         ...new Set(
-          document
-            .querySelector("#words")
+          wordsDom
             .value.split(" ")
             .map((w) => w.trim().toLowerCase())
         ),
       ];
       document.body.innerHTML = `<div id='trace'>${generateWordMatrix(words)}</div>`;
     }
+
+    // initial load set words
+    let params = (new URL(document.location)).searchParams;
+    wordsDom.value = params.get('q')
   </script>
 </html>
