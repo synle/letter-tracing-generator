@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -14,7 +14,7 @@
       }
       @font-face {
         font-family: TraceFont;
-        src: url('trace.ttf') format('truetype');
+        src: url("trace.ttf") format("truetype");
       }
       #trace {
         /*requires trace font*/
@@ -73,9 +73,19 @@
     </style>
   </head>
   <body>
-    <form onsubmit="generateWord(); return false;">
+    <form
+      onsubmit="
+        generateWord();
+        return false;
+      "
+    >
       <h1>Letter Tracing Generator</h1>
-      <input id="words" placeholder="What's the words?" required contenteditable />
+      <input
+        id="words"
+        placeholder="What's the words?"
+        required
+        contenteditable
+      />
       <button type="submit">Submit</button>
       <a
         href="https://github.com/synle/letter-tracing-generator/blob/main/index.html"
@@ -88,11 +98,11 @@
       words,
       width = 11,
       height = 11,
-      spaceBetweenWords = "  "
+      spaceBetweenWords = "  ",
     ) {
       const url = new URL(window.location);
-      url.searchParams.set('q', words.join(' '));
-      window.history.pushState({}, '', url);
+      url.searchParams.set("q", words.join(" "));
+      window.history.pushState({}, "", url);
 
       if (words.length === 0) {
         throw "Some words are needed";
@@ -144,21 +154,18 @@
       return res.join("<br />");
     }
 
-    const wordsDom = document
-            .querySelector("#words")
+    const wordsDom = document.querySelector("#words");
     function generateWord() {
       const words = [
         ...new Set(
-          wordsDom
-            .value.split(" ")
-            .map((w) => w.trim().toLowerCase())
+          wordsDom.value.split(" ").map((w) => w.trim().toLowerCase()),
         ),
       ];
       document.body.innerHTML = `<div id='trace'>${generateWordMatrix(words)}</div>`;
     }
 
     // initial load set words
-    let params = (new URL(document.location)).searchParams;
-    wordsDom.value = params.get('q')
+    let params = new URL(document.location).searchParams;
+    wordsDom.value = params.get("q");
   </script>
 </html>
